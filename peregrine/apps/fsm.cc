@@ -63,10 +63,11 @@ int main(int argc, char *argv[])
 
   std::cout << k << "-FSM with threshold " << threshold << std::endl;
 
+  auto ts = utils::get_timestamp();
+
   Peregrine::DataGraph dg(data_graph_name);
 
-  // initial discovery
-  auto t1 = utils::get_timestamp();
+  /* ----- initial sub-graph discovery ----- */
   {
     const auto process = [](auto &&a, auto &&cm) {
       uint32_t merge = cm.pattern[0] == cm.pattern[1] ? 0 : 1;
@@ -85,6 +86,8 @@ int main(int argc, char *argv[])
       }
     }
   }
+
+  /* ----- Extended Subgraph Discovery ----- */
 
   std::vector<Peregrine::SmallGraph> patterns = Peregrine::PatternGenerator::extend(freq_patterns, extension_strategy);
 
@@ -110,7 +113,7 @@ int main(int argc, char *argv[])
     patterns = Peregrine::PatternGenerator::extend(freq_patterns, extension_strategy);
     step += 1;
   }
-  auto t2 = utils::get_timestamp();
+  auto te = utils::get_timestamp();
 
   std::cout << freq_patterns.size() << " frequent patterns: " << std::endl;
   for (uint32_t i = 0; i < freq_patterns.size(); ++i)
@@ -118,6 +121,6 @@ int main(int argc, char *argv[])
     std::cout << freq_patterns[i].to_string() << ": " << supports[i] << std::endl;
   }
 
-  std::cout << "finished in " << (t2-t1)/1e6 << "s" << std::endl;
+  std::cout << "Total FSM runtime: " << (te-ts)/1e6 << "s" << std::endl;
   return 0;
 }

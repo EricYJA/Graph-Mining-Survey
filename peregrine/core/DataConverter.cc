@@ -429,16 +429,44 @@ namespace Peregrine
           std::ofstream ofile(output_labels.c_str(), std::ios::binary | std::ios::trunc);
     
           std::string line;
+
+          constexpr uint16_t label_flat_size = 2;
+          constexpr uint16_t label_flat_space = 100;
+
+          std::cout << "label_flat_size: " << label_flat_size << std::endl;
+          std::cout << "label_flat_space: " << label_flat_space << std::endl;
+
           while (std::getline(ifile, line))
           {
             // easy to predict properly
             if (line[0] == '#') continue;
             std::istringstream iss(line);
     
+            /* modify the label size */
+
+            uint32_t flattened_label = 0;
+
             uint32_t u;
-            uint32_t new_u_label[2];
-            iss >> u >> new_u_label[1];
+            uint32_t new_u_label[label_flat_size + 1];
+
+            //renew the label as reordered index
+            iss >> u;
             new_u_label[0] = ids_rev_map[u]+1;
+
+            uint16_t label_counter = 1;
+            while(iss >> new_u_label[label_counter])
+            {
+              flattened_label = flattened_label * label_flat_space + new_u_label[label_counter];
+
+              label_counter++;
+              if (label_counter > label_flat_size)
+                break;
+            }
+
+            // printf("flattened_label: %d\n", flattened_label);
+
+            // write the flattened label back
+            new_u_label[1] = flattened_label;
     
             if (new_u_label[0] != 0) // ids_rev_map[u] != -1
             {

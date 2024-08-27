@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
   std::string label_file(argc == 4 ? argv[2] : "");
   std::string out_dir(argc == 4 ? argv[3] : argv[2]);
 
+  // Check if the input files and output directory exist
   if (!std::filesystem::exists(edge_file))
   {
     std::cerr

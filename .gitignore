@@ -1,1 +1,5 @@
+# Ignore the large data files
 Data/*
+
+# But don't ignore the links.md file
+!Data/Links.md
