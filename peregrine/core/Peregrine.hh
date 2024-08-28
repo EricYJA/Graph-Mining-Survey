@@ -971,7 +971,7 @@ namespace Peregrine
     }
 
     // utils::Log{} << "-------" << "\n";
-    utils::Log{} << "Core match vector time" << (t2-t1)/1e6 << "s" << "\n";
+    utils::Log{} << "Core match vector time: " << (t2-t1)/1e6 << "s" << "\n";
 
     return results;
   }
@@ -1119,7 +1119,7 @@ namespace Peregrine
     }
 
     // utils::Log{} << "-------" << "\n";
-    utils::Log{} << "Core count time " << (t2-t1)/1e6 << "s" << "\n";
+    utils::Log{} << "Core count time: " << (t2-t1)/1e6 << "s" << "\n";
 
 
     return results;
