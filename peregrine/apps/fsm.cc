@@ -74,9 +74,12 @@ int main(int argc, char *argv[])
       a.map(cm.pattern, std::make_pair(cm.mapping, merge));
     };
 
+    auto t1 = utils::get_timestamp();
     std::vector<Peregrine::SmallGraph> patterns = {Peregrine::PatternGenerator::star(2)};
     patterns.front().set_labelling(Peregrine::Graph::DISCOVER_LABELS);
+    auto t2 = utils::get_timestamp();
     auto psupps = Peregrine::match<Peregrine::Pattern, DiscoveryDomain<1>, Peregrine::AT_THE_END, Peregrine::UNSTOPPABLE>(dg, patterns, nthreads, process, view);
+    auto t3 = utils::get_timestamp();
     for (const auto &[p, supp] : psupps)
     {
       if (supp >= threshold)
@@ -85,11 +88,20 @@ int main(int argc, char *argv[])
         supports.push_back(supp);
       }
     }
+
+    std::cout << "Initial FSM pattern generation time: " << (t2-t1)/1e6 << "s" << std::endl;
+    std::cout << "Initial FSM matching time: " << (t3-t2)/1e6 << "s" << std::endl;
+    std::cout << "Initial FSM runtime: " << (t3-t1)/1e6 << "s" << std::endl;
   }
 
   /* ----- Extended Subgraph Discovery ----- */
 
+  uint16_t loop_counter = 0;
+
+  auto t4 = utils::get_timestamp();
   std::vector<Peregrine::SmallGraph> patterns = Peregrine::PatternGenerator::extend(freq_patterns, extension_strategy);
+  auto t5 = utils::get_timestamp();
+  std::cout << "Loop: " << loop_counter << " FSM pattern generation time: " << (t5-t4)/1e6 << "s" << std::endl;
 
   const auto process = [](auto &&a, auto &&cm) {
     a.map(cm.pattern, cm.mapping);
@@ -99,7 +111,11 @@ int main(int argc, char *argv[])
   {
     freq_patterns.clear();
     supports.clear();
+
+    auto t6 = utils::get_timestamp();
     auto psupps = Peregrine::match<Peregrine::Pattern, Domain, Peregrine::AT_THE_END, Peregrine::UNSTOPPABLE>(dg, patterns, nthreads, process, view);
+    auto t7 = utils::get_timestamp();
+    std::cout << "Loop: " << loop_counter << " FSM matching time: " << (t7-t6)/1e6 << "s" << std::endl;
 
     for (const auto &[p, supp] : psupps)
     {
@@ -110,7 +126,13 @@ int main(int argc, char *argv[])
       }
     }
 
+    loop_counter += 1;
+
+    auto t8 = utils::get_timestamp();
     patterns = Peregrine::PatternGenerator::extend(freq_patterns, extension_strategy);
+    auto t9 = utils::get_timestamp();
+    std::cout << "Loop: " << loop_counter << " FSM pattern generation time: " << (t9-t8)/1e6 << "s" << std::endl;
+
     step += 1;
   }
   auto te = utils::get_timestamp();

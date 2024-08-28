@@ -16,8 +16,8 @@ int main(int argc, char *argv[])
   }
 
   std::string edge_file(argv[1]);
-  std::string label_file(argc == 4 ? argv[2] : "");
-  std::string out_dir(argc == 4 ? argv[3] : argv[2]);
+  std::string label_file(argc >= 4 ? argv[2] : "");
+  std::string out_dir(argc >= 4 ? argv[3] : argv[2]);
 
   // Check if the input files and output directory exist
   if (!std::filesystem::exists(edge_file))
@@ -52,7 +52,16 @@ int main(int argc, char *argv[])
     }
   }
 
-  Peregrine::DataConverter::convert_data(edge_file, label_file, out_dir);
+  uint16_t label_flat_size = 1;
+  uint16_t label_flat_space = 1; 
+  if (argc >= 6) {
+    label_flat_size = std::stoi(argv[4]);
+    label_flat_space = std::stoi(argv[5]);
+  } else {
+    std::cout << "Using default label_flat_size and label_flat_space" << std::endl; 
+  }
+
+  Peregrine::DataConverter::convert_data(edge_file, label_file, out_dir, label_flat_size, label_flat_space);
 
   return 0;
 }

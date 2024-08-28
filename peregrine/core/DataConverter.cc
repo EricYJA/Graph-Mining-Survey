@@ -202,7 +202,7 @@ namespace Peregrine
       }
     }
     
-    void convert_data(const std::string &edge_file, const std::string &label_file, const std::string &out_dir)
+    void convert_data(const std::string &edge_file, const std::string &label_file, const std::string &out_dir, uint16_t label_flat_size, uint16_t label_flat_space)
     {
       auto t1 = utils::get_timestamp();
     
@@ -430,8 +430,7 @@ namespace Peregrine
     
           std::string line;
 
-          constexpr uint16_t label_flat_size = 2;
-          constexpr uint16_t label_flat_space = 100;
+          constexpr uint16_t max_label_read = 10;
 
           std::cout << "label_flat_size: " << label_flat_size << std::endl;
           std::cout << "label_flat_space: " << label_flat_space << std::endl;
@@ -447,7 +446,7 @@ namespace Peregrine
             uint32_t flattened_label = 0;
 
             uint32_t u;
-            uint32_t new_u_label[label_flat_size + 1];
+            uint32_t new_u_label[max_label_read];
 
             //renew the label as reordered index
             iss >> u;
@@ -459,7 +458,7 @@ namespace Peregrine
               flattened_label = flattened_label * label_flat_space + new_u_label[label_counter];
 
               label_counter++;
-              if (label_counter > label_flat_size)
+              if (label_counter > max_label_read)
                 break;
             }
 
