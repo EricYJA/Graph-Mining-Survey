@@ -1,3 +1,0 @@
-3-FSM with threshold 300
--------
-all patterns finished after 15.5339s

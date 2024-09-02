@@ -673,8 +673,8 @@ namespace Peregrine
       agg_thread.join();
     }
 
-    // utils::Log{} << "-------" << "\n";
-    utils::Log{} << "Core matching time: " << (t2-t1)/1e6 << "s" << "\n";
+    utils::Log{} << "-------" << "\n";
+    utils::Log{} << "all patterns finished after " << (t2-t1)/1e6 << "s" << "\n";
 
     return results;
   }
@@ -818,8 +818,8 @@ namespace Peregrine
       agg_thread.join();
     }
 
-    // utils::Log{} << "-------" << "\n";
-    utils::Log{} << "Core match single time: " << (t2-t1)/1e6 << "s" << "\n";
+    utils::Log{} << "-------" << "\n";
+    utils::Log{} << "all patterns finished after " << (t2-t1)/1e6 << "s" << "\n";
 
     return results;
   }
@@ -970,8 +970,8 @@ namespace Peregrine
       agg_thread.join();
     }
 
-    // utils::Log{} << "-------" << "\n";
-    utils::Log{} << "Core match vector time: " << (t2-t1)/1e6 << "s" << "\n";
+    utils::Log{} << "-------" << "\n";
+    utils::Log{} << "all patterns finished after " << (t2-t1)/1e6 << "s" << "\n";
 
     return results;
   }
@@ -1118,8 +1118,8 @@ namespace Peregrine
       delete dg;
     }
 
-    // utils::Log{} << "-------" << "\n";
-    utils::Log{} << "Core count time: " << (t2-t1)/1e6 << "s" << "\n";
+    utils::Log{} << "-------" << "\n";
+    utils::Log{} << "all patterns finished after " << (t2-t1)/1e6 << "s" << "\n";
 
 
     return results;
