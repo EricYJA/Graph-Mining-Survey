@@ -1,7 +1,10 @@
 #!/bin/bash
 
+# Load the TBB environment variables
+source tbb2020/bin/tbbvars.sh intel64
+
 # Start your program in the background and redirect its output to a log file
-bin/fsm data/my-graph-flat-1-1/ 3 20000 16 v > >(tee -a log.txt) &
+bin/fsm data/cite-flat-normalized/ 3 500 16 > >(tee -a pa-flat-fsm-500.log) &
 
 # Get the PID of your program
 PID=$!

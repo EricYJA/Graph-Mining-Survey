@@ -65,16 +65,29 @@ int main(int argc, char *argv[])
   Peregrine::DataGraph dg(data_graph_name);
 
   // initial discovery
-  auto t1 = utils::get_timestamp();
+  auto ts = utils::get_timestamp();
   {
     const auto process = [](auto &&a, auto &&cm) {
       uint32_t merge = cm.pattern[0] == cm.pattern[1] ? 0 : 1;
       a.map(cm.pattern, std::make_pair(cm.mapping, merge));
     };
 
+    auto t1 = utils::get_timestamp();
     std::vector<Peregrine::SmallGraph> patterns = {Peregrine::PatternGenerator::star(2)};
+    auto t2 = utils::get_timestamp();
+    std::cout << "init pattern generation time " << (t2-t1)/1e6 << "s" << std::endl;
+
     patterns.front().set_labelling(Peregrine::Graph::DISCOVER_LABELS);
+
+    printf("Initial unlabeled pattern size: %lu\n", patterns.size());
+
+    auto t3 = utils::get_timestamp();
     auto psupps = Peregrine::match<Peregrine::Pattern, DiscoveryDomain<1>, Peregrine::AT_THE_END, Peregrine::UNSTOPPABLE>(dg, patterns, nthreads, process, view);
+    auto t4 = utils::get_timestamp();
+    std::cout << "init pattern matching time " << (t4-t3)/1e6 << "s" << std::endl;
+
+    printf("Initial discovery pattern size: %lu\n", psupps.size());
+
     for (const auto &[p, supp] : psupps)
     {
       if (supp >= threshold)
@@ -83,9 +96,18 @@ int main(int argc, char *argv[])
         supports.push_back(supp);
       }
     }
+
+    printf("Initial frequent pattern size: %lu\n", freq_patterns.size());
   }
 
+  uint16_t extend_counter = 0;
+  
+  auto t5 = utils::get_timestamp();
   std::vector<Peregrine::SmallGraph> patterns = Peregrine::PatternGenerator::extend(freq_patterns, extension_strategy);
+  auto t6 = utils::get_timestamp();
+  std::cout << "pattern extension level " << extend_counter << " time " << (t6-t5)/1e6 << "s" << std::endl;
+
+  printf("Initial extended pattern size: %lu\n", patterns.size());
 
   const auto process = [](auto &&a, auto &&cm) {
     a.map(cm.pattern, cm.mapping);
@@ -95,7 +117,15 @@ int main(int argc, char *argv[])
   {
     freq_patterns.clear();
     supports.clear();
+
+    auto t7 = utils::get_timestamp();
     auto psupps = Peregrine::match<Peregrine::Pattern, Domain, Peregrine::AT_THE_END, Peregrine::UNSTOPPABLE>(dg, patterns, nthreads, process, view);
+    auto t8 = utils::get_timestamp();
+    std::cout << "pattern matching level " << step << " time " << (t8-t7)/1e6 << "s" << std::endl;
+
+    printf("Level %u pattern size: %lu\n", step, psupps.size());
+
+    extend_counter += 1;
 
     for (const auto &[p, supp] : psupps)
     {
@@ -106,10 +136,18 @@ int main(int argc, char *argv[])
       }
     }
 
+    printf("Level %u frequent pattern size: %lu\n", step, freq_patterns.size());
+
+    auto t9 = utils::get_timestamp();
     patterns = Peregrine::PatternGenerator::extend(freq_patterns, extension_strategy);
+    auto t10 = utils::get_timestamp();
+    std::cout << "pattern extension level " << extend_counter << " time " << (t10-t9)/1e6 << "s" << std::endl;
+
+    printf("Level %u extended pattern size: %lu\n", step, patterns.size());
+
     step += 1;
   }
-  auto t2 = utils::get_timestamp();
+  auto te = utils::get_timestamp();
 
   std::cout << freq_patterns.size() << " frequent patterns: " << std::endl;
   for (uint32_t i = 0; i < freq_patterns.size(); ++i)
@@ -117,6 +155,6 @@ int main(int argc, char *argv[])
     std::cout << freq_patterns[i].to_string() << ": " << supports[i] << std::endl;
   }
 
-  std::cout << "finished in " << (t2-t1)/1e6 << "s" << std::endl;
+  std::cout << "finished in " << (te-ts)/1e6 << "s" << std::endl;
   return 0;
 }

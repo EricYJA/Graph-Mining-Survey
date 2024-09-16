@@ -297,6 +297,7 @@ namespace Peregrine
 
       /**
        * Note: no anti-edges are passed!
+       * vertex adj list for graph representation
        */
       SmallGraph(const std::unordered_map<uint32_t, std::vector<uint32_t>> &adj,
           const std::vector<uint32_t> &labels = {0})
@@ -468,6 +469,33 @@ namespace Peregrine
       }
   };
 
+/*
+
+The relationship between these concepts and the RBI (Reduced Basis Image) graph in terms of vertex sequences.
+VGS (Vertex Group Sets): Normalized vertex sequences that represent subgraphs of the query graph.
+QS (Query Sequences): Permuted vertex sequences that represent valid orderings for matching.
+RBI (Reduced Basis Image): A compact representation of the query graph that guides the matching process.
+The RBI in terms of vertex sequences:
+1. Core Structure: The RBI is based on the Minimum Vertex Cover Variant (MVCV) of the query graph. This forms the core structure of the RBI.
+2. Vertex Mapping: The RBI maintains a mapping between its vertices and the original query graph vertices. This mapping is often represented in the vmap structure.
+Query Sequences: The RBI incorporates the valid query sequences (QS) as part of its structure. These sequences determine the order in which vertices should be matched.
+Vertex Groups: The RBI organizes vertices into groups (VGS) based on their role in the matching process and their relationships in the query graph.
+Here's a simplified representation of how these components come together in the RBI:
+The process of constructing the RBI involves:
+1. Finding the MVCV (core structure)
+Generating and normalizing vertex sequences (VGS)
+3. Determining valid query sequences (QS)
+Creating mappings between these structures and the original query graph
+The RBI, therefore, is not just a single vertex sequence, but a complex structure that incorporates multiple types of vertex sequences and their relationships. It serves as an optimized representation of the query graph, designed to guide the matching process efficiently by leveraging the information from VGS, QS, and the core structure derived from the MVCV.
+This structure allows Peregrine to:
+1. Efficiently explore different matching strategies
+Maintain the necessary constraints and structure of the original query graph
+Optimize the matching process by pre-computing important information about vertex orderings and relationships
+
+*/
+
+
+  // generates the exploration plan
   class AnalyzedPattern
   {
     public:
@@ -478,8 +506,8 @@ namespace Peregrine
       std::vector<std::vector<uint32_t>> cond_adj;
       // important! conditions show only a subset of symmetric vertices
       std::vector<std::pair<uint32_t, uint32_t>> conditions;
-      std::vector<uint32_t> aut_map;
-      uint32_t nautsets = 0;
+      std::vector<uint32_t> aut_map; //automorphism map
+      uint32_t nautsets = 0; // number of automorphism sets
 
       std::vector<uint32_t> ncore_vertices;
       std::vector<uint32_t> anti_vertices;
@@ -512,17 +540,33 @@ namespace Peregrine
       AnalyzedPattern(const SmallGraph &p)
         : query_graph(p)
       {
+        printf("Analyzing pattern: generates exploration plan from SmallGraph\n");
+
+        // check if the pattern is connected
         check_connected();
+
+        // get the anti-vertices
         get_anti_vertices();
+
+        // check if the anti-vertices are valid
         check_anti_vertices();
+
+        // check if the labels are valid
         check_labels();
+
+        // get the conditions
         conditions = get_conditions();
+
+        // Constructs the Reduced Basis Image (RBI) graph
         build_rbi_graph();
+
+        printf("Analyzing pattern: done\n");
       }
 
       AnalyzedPattern(std::string inputfile)
         : query_graph(inputfile)
       {
+        printf("Analyzing pattern: generates exploration plan from inputfile\n");
         check_connected();
         get_anti_vertices();
         check_anti_vertices();

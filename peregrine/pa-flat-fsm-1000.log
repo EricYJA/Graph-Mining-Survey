@@ -1,0 +1,82 @@
+3-FSM with threshold 1000
+2024-09-04 14:38:36 Memory Usage: 94248 KB
+init pattern generation time 1.8e-05s
+2024-09-04 14:38:37 Memory Usage: 477648 KB
+2024-09-04 14:38:38 Memory Usage: 799556 KB
+2024-09-04 14:38:40 Memory Usage: 1100764 KB
+2024-09-04 14:38:41 Memory Usage: 1350772 KB
+2024-09-04 14:38:42 Memory Usage: 1579900 KB
+2024-09-04 14:38:43 Memory Usage: 1821080 KB
+2024-09-04 14:38:44 Memory Usage: 2052080 KB
+2024-09-04 14:38:45 Memory Usage: 2272520 KB
+2024-09-04 14:38:46 Memory Usage: 2507720 KB
+2024-09-04 14:38:47 Memory Usage: 2726264 KB
+2024-09-04 14:38:48 Memory Usage: 2924028 KB
+2024-09-04 14:38:49 Memory Usage: 3121788 KB
+2024-09-04 14:38:51 Memory Usage: 3316688 KB
+2024-09-04 14:38:52 Memory Usage: 3502456 KB
+2024-09-04 14:38:53 Memory Usage: 3700984 KB
+2024-09-04 14:38:54 Memory Usage: 3890272 KB
+2024-09-04 14:38:55 Memory Usage: 4069520 KB
+2024-09-04 14:38:56 Memory Usage: 4240044 KB
+2024-09-04 14:38:57 Memory Usage: 4515084 KB
+2024-09-04 14:38:58 Memory Usage: 4831064 KB
+2024-09-04 14:38:59 Memory Usage: 5016592 KB
+2024-09-04 14:39:00 Memory Usage: 5214588 KB
+2024-09-04 14:39:01 Memory Usage: 5386716 KB
+2024-09-04 14:39:03 Memory Usage: 5535876 KB
+2024-09-04 14:39:04 Memory Usage: 5634612 KB
+2024-09-04 14:39:05 Memory Usage: 5747604 KB
+2024-09-04 14:39:06 Memory Usage: 5852392 KB
+2024-09-04 14:39:07 Memory Usage: 5947168 KB
+2024-09-04 14:39:08 Memory Usage: 6026896 KB
+2024-09-04 14:39:09 Memory Usage: 6107152 KB
+2024-09-04 14:39:10 Memory Usage: 6187936 KB
+2024-09-04 14:39:11 Memory Usage: 6265024 KB
+2024-09-04 14:39:12 Memory Usage: 6334720 KB
+2024-09-04 14:39:13 Memory Usage: 6411808 KB
+2024-09-04 14:39:14 Memory Usage: 6486256 KB
+2024-09-04 14:39:16 Memory Usage: 6551200 KB
+2024-09-04 14:39:17 Memory Usage: 7074536 KB
+match_multi finished after 41.042s
+2024-09-04 14:39:18 Memory Usage: 7595844 KB
+2024-09-04 14:39:19 Memory Usage: 7562436 KB
+2024-09-04 14:39:20 Memory Usage: 7269724 KB
+2024-09-04 14:39:21 Memory Usage: 6837108 KB
+2024-09-04 14:39:22 Memory Usage: 6325936 KB
+2024-09-04 14:39:23 Memory Usage: 5795184 KB
+2024-09-04 14:39:24 Memory Usage: 5261596 KB
+2024-09-04 14:39:25 Memory Usage: 4960396 KB
+2024-09-04 14:39:26 Memory Usage: 4937436 KB
+2024-09-04 14:39:27 Memory Usage: 4937436 KB
+2024-09-04 14:39:28 Memory Usage: 5173712 KB
+init pattern matching time 51.4287s
+pattern extension level 0 time 0.255387s
+2024-09-04 14:39:29 Memory Usage: 4700904 KB
+2024-09-04 14:39:30 Memory Usage: 4700904 KB
+2024-09-04 14:39:31 Memory Usage: 4700904 KB
+2024-09-04 14:39:32 Memory Usage: 4700904 KB
+2024-09-04 14:39:33 Memory Usage: 4700904 KB
+2024-09-04 14:39:34 Memory Usage: 4700904 KB
+2024-09-04 14:39:35 Memory Usage: 4700904 KB
+2024-09-04 14:39:37 Memory Usage: 4700904 KB
+2024-09-04 14:39:38 Memory Usage: 4698908 KB
+2024-09-04 14:39:39 Memory Usage: 4698908 KB
+2024-09-04 14:39:40 Memory Usage: 4698908 KB
+2024-09-04 14:39:41 Memory Usage: 4698908 KB
+2024-09-04 14:39:42 Memory Usage: 4698908 KB
+2024-09-04 14:39:43 Memory Usage: 4698908 KB
+2024-09-04 14:39:44 Memory Usage: 4698908 KB
+2024-09-04 14:39:45 Memory Usage: 4698908 KB
+2024-09-04 14:39:46 Memory Usage: 4698908 KB
+match_single finished after 18.0495s
+2024-09-04 14:39:47 Memory Usage: 4534320 KB
+2024-09-04 14:39:49 Memory Usage: 4534584 KB
+2024-09-04 14:39:50 Memory Usage: 4534584 KB
+match_ector finished after 2.96996s
+pattern matching level 1 time 21.0874s
+pattern extension level 1 time 4.4e-05s
+0 frequent patterns: 
+finished in 73.2684s
+0 frequent patterns: 
+finished in 73.2684s

@@ -572,6 +572,7 @@ namespace Peregrine
     auto t1 = utils::get_timestamp();
     for (const auto &p : patterns)
     {
+      printf("match_multi: Matching pattern from patterns\n");
       // reset state
       Context::task_ctr = 0;
 
@@ -659,6 +660,8 @@ namespace Peregrine
           results.emplace_back(k, v);
         }
       }
+
+      printf("match_multi: Done matching pattern from patterns\n");
     }
     auto t2 = utils::get_timestamp();
 
@@ -673,8 +676,8 @@ namespace Peregrine
       agg_thread.join();
     }
 
-    utils::Log{} << "-------" << "\n";
-    utils::Log{} << "all patterns finished after " << (t2-t1)/1e6 << "s" << "\n";
+    // utils::Log{} << "-------" << "\n";
+    utils::Log{} << "match_multi finished after " << (t2-t1)/1e6 << "s" << "\n";
 
     return results;
   }
@@ -818,8 +821,8 @@ namespace Peregrine
       agg_thread.join();
     }
 
-    utils::Log{} << "-------" << "\n";
-    utils::Log{} << "all patterns finished after " << (t2-t1)/1e6 << "s" << "\n";
+    // utils::Log{} << "-------" << "\n";
+    utils::Log{} << "match_single finished after " << (t2-t1)/1e6 << "s" << "\n";
 
     return results;
   }
@@ -970,8 +973,8 @@ namespace Peregrine
       agg_thread.join();
     }
 
-    utils::Log{} << "-------" << "\n";
-    utils::Log{} << "all patterns finished after " << (t2-t1)/1e6 << "s" << "\n";
+    // utils::Log{} << "-------" << "\n";
+    utils::Log{} << "match_ector finished after " << (t2-t1)/1e6 << "s" << "\n";
 
     return results;
   }
@@ -1118,8 +1121,8 @@ namespace Peregrine
       delete dg;
     }
 
-    utils::Log{} << "-------" << "\n";
-    utils::Log{} << "all patterns finished after " << (t2-t1)/1e6 << "s" << "\n";
+    // utils::Log{} << "-------" << "\n";
+    utils::Log{} << "count finished after " << (t2-t1)/1e6 << "s" << "\n";
 
 
     return results;
