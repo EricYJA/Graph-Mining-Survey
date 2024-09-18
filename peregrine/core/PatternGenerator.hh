@@ -13,7 +13,7 @@ namespace Peregrine
     static SmallGraph clique(uint32_t sz);
     static SmallGraph star(uint32_t sz);
     static std::vector<SmallGraph> all(uint32_t sz, bool vertex_based, bool anti_edges);
-    static std::vector<SmallGraph> extend(const std::vector<SmallGraph> &from, bool vertex_based, bool overwrite_anti_edges = OVERWRITE_ANTI_EDGES);
+    static std::vector<SmallGraph> extend(const std::vector<SmallGraph> &from, bool vertex_based, bool overwrite_anti_edges = OVERWRITE_ANTI_EDGES, const std::vector<SmallGraph> &frequent_edges = std::vector<SmallGraph>());
     bool is_connected_pattern(Edges edge_list);
 
     static const bool VERTEX_BASED = true;

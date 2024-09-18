@@ -76,7 +76,7 @@ namespace Peregrine
    * Notice that only one (the last) is partially-labelled, with 3 fully-labelled
    * ones where the added vertex takes one of the pre-existing 3 labels.
    */
-  std::vector<SmallGraph> PatternGenerator::extend(const std::vector<SmallGraph> &from, bool vertex_based, bool overwrite_anti_edges)
+  std::vector<SmallGraph> PatternGenerator::extend(const std::vector<SmallGraph> &from, bool vertex_based, bool overwrite_anti_edges, const std::vector<SmallGraph> &frequent_edges)
   {
     std::vector<SmallGraph> result;
     std::unordered_set<uint32_t> label_set;
@@ -88,6 +88,30 @@ namespace Peregrine
 
     // partially-labelled
     label_set.insert(static_cast<uint32_t>(-1));
+
+    auto edge_frequent = [&](uint32_t u_label, uint32_t v_label) -> bool {
+        if (frequent_edges.empty()) {
+            return true;
+        }
+
+        // printf("Check frequent edges size: %lu\n", frequent_edges.size());
+        
+        for (const auto &p : frequent_edges) {
+            if (p.num_vertices() != 2) {
+                printf("ERROR: frequent edge is not an edge\n");
+                continue;
+            }
+
+            std::vector<uint32_t> v_label_list = p.get_labels();
+
+            if (std::find(v_label_list.begin(), v_label_list.end(), u_label) != v_label_list.end() &&
+                std::find(v_label_list.begin(), v_label_list.end(), v_label) != v_label_list.end()) {
+                return true;
+            }
+        }
+        return false;
+    };
+
 
     if (vertex_based)
     {
@@ -344,6 +368,13 @@ namespace Peregrine
                   auto new_adj(adj);
                   new_adj[u].push_back(v);
                   new_adj[v].push_back(u);
+
+                  // check if this added edge is frequent
+                  if (!edge_frequent(p.label(u), p.label(v))) {
+                    // printf("Skip edge when adding new edge\n");
+                    continue;
+                  }
+
                   result.emplace_back(new_adj, p.labels);
                   // XXX: ugly. It's making sure this isn't marked labelled falsely
                   // better to just get rid of all the labels.resize() stuff in Graph::*
@@ -396,6 +427,13 @@ namespace Peregrine
             {
               std::vector<uint32_t> labels(p.labels);
               labels.push_back(l);
+
+              // check if this added edge is frequent
+              if (!edge_frequent(p.label(src), l)) {
+                // printf("Skip edge when adding new vertex\n");
+                continue;
+              }
+
               result.emplace_back(new_adj, labels);
             }
           }

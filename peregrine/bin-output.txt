@@ -1,0 +1,42 @@
+3-FSM with threshold 24000
+Data graph size |V| = 3774768 |E| = 16518947
+init pattern generation time 1.2e-05s
+Initial unlabeled pattern size: 1
+match_multi: Matching pattern from patterns
+match_multi: Done matching pattern from patterns
+match_multi finished after 0.938102s
+init pattern matching time 0.991485s
+Initial discovery pattern size: 663
+Initial frequent pattern size: 103
+pattern extension level 0 time 0.029112s
+Initial extended pattern size: 1637
+match_single finished after 195.047s
+pattern matching level 1 time 195.049s
+Level 1 pattern size: 1637
+Level 1 frequent pattern size: 86
+pattern extension level 1 time 0.02454s
+Level 1 extended pattern size: 2177
+match_single finished after 449.196s
+pattern matching level 2 time 449.199s
+Level 2 pattern size: 2177
+Level 2 frequent pattern size: 16
+pattern extension level 2 time 0.004679s
+Level 2 extended pattern size: 384
+16 frequent patterns: 
+[1,32-2,36][1,32-3,37][2,36-4,31]: 25350
+[1,32-2,36][1,32-3,37][2,36-4,30]: 24426
+[1,32-2,36][1,32-3,37][2,36-4,32]: 24862
+[1,32-2,36][1,32-3,37][2,36-4,33]: 24890
+[1,32-2,36][1,32-3,37][3,37-4,31]: 25070
+[1,32-2,36][1,32-3,37][3,37-4,34]: 24271
+[1,32-2,36][1,32-3,37][3,37-4,33]: 25507
+[1,32-2,36][2,36-3,33][3,33-4,37]: 25440
+[1,33-2,37][1,33-3,36][2,37-4,31]: 24347
+[1,33-2,37][1,33-3,36][2,37-4,34]: 25503
+[1,33-2,37][1,33-3,36][2,37-4,32]: 25515
+[1,33-2,37][1,33-3,36][2,37-4,33]: 24567
+[1,33-2,37][1,33-3,36][3,36-4,31]: 24186
+[1,33-2,37][2,37-3,34][3,34-4,36]: 24733
+[1,34-2,36][1,34-3,37][3,37-4,34]: 24791
+[1,34-2,37][1,34-3,37][2,37-4,34]: 24393
+finished in 645.301s

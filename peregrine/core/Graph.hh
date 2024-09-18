@@ -540,7 +540,7 @@ Optimize the matching process by pre-computing important information about verte
       AnalyzedPattern(const SmallGraph &p)
         : query_graph(p)
       {
-        printf("Analyzing pattern: generates exploration plan from SmallGraph\n");
+        // printf("Analyzing pattern: generates exploration plan from SmallGraph\n");
 
         // check if the pattern is connected
         check_connected();
@@ -560,13 +560,13 @@ Optimize the matching process by pre-computing important information about verte
         // Constructs the Reduced Basis Image (RBI) graph
         build_rbi_graph();
 
-        printf("Analyzing pattern: done\n");
+        // printf("Analyzing pattern: done\n");
       }
 
       AnalyzedPattern(std::string inputfile)
         : query_graph(inputfile)
       {
-        printf("Analyzing pattern: generates exploration plan from inputfile\n");
+        // printf("Analyzing pattern: generates exploration plan from inputfile\n");
         check_connected();
         get_anti_vertices();
         check_anti_vertices();

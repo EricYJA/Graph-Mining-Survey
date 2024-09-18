@@ -59,10 +59,13 @@ int main(int argc, char *argv[])
 
   std::vector<uint64_t> supports;
   std::vector<Peregrine::SmallGraph> freq_patterns;
+  std::vector<Peregrine::SmallGraph> freq_edge_patterns;
 
   std::cout << k << "-FSM with threshold " << threshold << std::endl;
 
   Peregrine::DataGraph dg(data_graph_name);
+
+  printf("Data graph size |V| = %u |E| = %lu\n", dg.get_vertex_count(), dg.get_edge_count());
 
   // initial discovery
   auto ts = utils::get_timestamp();
@@ -93,6 +96,7 @@ int main(int argc, char *argv[])
       if (supp >= threshold)
       {
         freq_patterns.push_back(p);
+        freq_edge_patterns.push_back(p);
         supports.push_back(supp);
       }
     }
@@ -103,7 +107,7 @@ int main(int argc, char *argv[])
   uint16_t extend_counter = 0;
   
   auto t5 = utils::get_timestamp();
-  std::vector<Peregrine::SmallGraph> patterns = Peregrine::PatternGenerator::extend(freq_patterns, extension_strategy);
+  std::vector<Peregrine::SmallGraph> patterns = Peregrine::PatternGenerator::extend(freq_patterns, extension_strategy, true, freq_edge_patterns);
   auto t6 = utils::get_timestamp();
   std::cout << "pattern extension level " << extend_counter << " time " << (t6-t5)/1e6 << "s" << std::endl;
 
@@ -139,7 +143,7 @@ int main(int argc, char *argv[])
     printf("Level %u frequent pattern size: %lu\n", step, freq_patterns.size());
 
     auto t9 = utils::get_timestamp();
-    patterns = Peregrine::PatternGenerator::extend(freq_patterns, extension_strategy);
+    patterns = Peregrine::PatternGenerator::extend(freq_patterns, extension_strategy, true, freq_edge_patterns);
     auto t10 = utils::get_timestamp();
     std::cout << "pattern extension level " << extend_counter << " time " << (t10-t9)/1e6 << "s" << std::endl;
 
