@@ -6,7 +6,7 @@ OBJ=core/DataGraph.o core/PO.o core/utils.o core/PatternGenerator.o $(ROOT_DIR)/
 OUTDIR=bin/
 CC=g++
 
-all: bliss fsm #convert_data count test existence-query 
+all: bliss fsm convert_data count test existence-query output
 
 core/roaring.o: core/roaring/roaring.c
 	gcc -c core/roaring/roaring.c -o $@ -O3 -Wall -Wextra -Wpedantic -fPIC 
@@ -17,23 +17,26 @@ core/roaring.o: core/roaring/roaring.c
 fsm: apps/fsm.cc $(OBJ) core/roaring.o bliss
 	$(CC) -g apps/fsm.cc $(OBJ) core/roaring.o -o $(OUTDIR)/$@ $(BLISS_LDFLAGS) $(LDFLAGS) $(CFLAGS)
 
-# existence-query: apps/existence-query.cc $(OBJ) bliss
-# 	$(CC) apps/existence-query.cc $(OBJ) -o $(OUTDIR)/$@ $(BLISS_LDFLAGS) $(LDFLAGS) $(CFLAGS)
+fsm-baseline: apps/fsm-baseline.cc $(OBJ) core/roaring.o bliss
+	$(CC) -g apps/fsm-baseline.cc $(OBJ) core/roaring.o -o $(OUTDIR)/$@ $(BLISS_LDFLAGS) $(LDFLAGS) $(CFLAGS)
 
-# enumerate: apps/enumerate.cc $(OBJ) bliss
-# 	$(CC) apps/enumerate.cc $(OBJ) -o $(OUTDIR)/$@ $(BLISS_LDFLAGS) $(LDFLAGS) $(CFLAGS)
+existence-query: apps/existence-query.cc $(OBJ) bliss
+	$(CC) apps/existence-query.cc $(OBJ) -o $(OUTDIR)/$@ $(BLISS_LDFLAGS) $(LDFLAGS) $(CFLAGS)
 
-# count: apps/count.cc $(OBJ) bliss
-# 	$(CC) apps/count.cc $(OBJ) -o $(OUTDIR)/$@ $(BLISS_LDFLAGS) $(LDFLAGS) $(CFLAGS)
+enumerate: apps/enumerate.cc $(OBJ) bliss
+	$(CC) apps/enumerate.cc $(OBJ) -o $(OUTDIR)/$@ $(BLISS_LDFLAGS) $(LDFLAGS) $(CFLAGS)
 
-# output: apps/output.cc $(OBJ) bliss
-# 	$(CC) apps/output.cc $(OBJ) -o $(OUTDIR)/$@ $(BLISS_LDFLAGS) $(LDFLAGS) $(CFLAGS)
+count: apps/count.cc $(OBJ) bliss
+	$(CC) apps/count.cc $(OBJ) -o $(OUTDIR)/$@ $(BLISS_LDFLAGS) $(LDFLAGS) $(CFLAGS)
 
-# test: core/test.cc $(OBJ) core/DataConverter.o core/roaring.o bliss
-# 	$(CC) core/test.cc -DTESTING $(OBJ) core/DataConverter.o core/roaring.o -o $(OUTDIR)/$@ $(BLISS_LDFLAGS) $(LDFLAGS) -lUnitTest++ $(CFLAGS)
+output: apps/output.cc $(OBJ) bliss
+	$(CC) apps/output.cc $(OBJ) -o $(OUTDIR)/$@ $(BLISS_LDFLAGS) $(LDFLAGS) $(CFLAGS)
 
-# convert_data: core/convert_data.cc core/DataConverter.o core/utils.o
-# 	$(CC) -o $(OUTDIR)/$@ $? $(LDFLAGS) $(CFLAGS)
+test: core/test.cc $(OBJ) core/DataConverter.o core/roaring.o bliss
+	$(CC) core/test.cc -DTESTING $(OBJ) core/DataConverter.o core/roaring.o -o $(OUTDIR)/$@ $(BLISS_LDFLAGS) $(LDFLAGS) -lUnitTest++ $(CFLAGS)
+
+convert_data: core/convert_data.cc core/DataConverter.o core/utils.o
+	$(CC) -o $(OUTDIR)/$@ $? $(LDFLAGS) $(CFLAGS)
 
 bliss:
 	make -C ./core/bliss-0.73
