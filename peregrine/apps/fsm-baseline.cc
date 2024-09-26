@@ -61,9 +61,6 @@ int main(int argc, char *argv[])
   std::vector<Peregrine::SmallGraph> freq_patterns;
   std::vector<Peregrine::SmallGraph> freq_edge_patterns;
 
-  DiscoveryDomain<1> discovery_mni; 
-  Domain mni;
-
   std::cout << k << "-FSM with threshold " << threshold << std::endl;
 
   Peregrine::DataGraph dg(data_graph_name);
@@ -76,8 +73,6 @@ int main(int argc, char *argv[])
     const auto process = [](auto &&a, auto &&cm) {
       uint32_t merge = cm.pattern[0] == cm.pattern[1] ? 0 : 1;
       a.map(cm.pattern, std::make_pair(cm.mapping, merge));
-
-      // move the update in the unordered map here
     };
 
     auto t1 = utils::get_timestamp();
@@ -113,16 +108,17 @@ int main(int argc, char *argv[])
   
   auto t5 = utils::get_timestamp();
   std::vector<Peregrine::SmallGraph> patterns = Peregrine::PatternGenerator::extend(freq_patterns, extension_strategy, true, freq_edge_patterns);
+  std::vector<Peregrine::SmallGraph> patterns_unlabeled = Peregrine::PatternGenerator::all(3, extension_strategy, false);
+
+  printf("patterns num_vertices: %lu\n", patterns[0].num_vertices());
+  printf("patterns_unlabeled size: %lu\n", patterns_unlabeled.size());
+
   auto t6 = utils::get_timestamp();
   std::cout << "pattern extension level " << extend_counter << " time " << (t6-t5)/1e6 << "s" << std::endl;
 
   printf("Initial extended pattern size: %lu\n", patterns.size());
 
-  
-
-
-  const auto process = [&discovery_mni_list](auto &&a, auto &&cm) {
-    printf("check capture: %d\n", discovery_mni_list.size());
+  const auto process = [](auto &&a, auto &&cm) {
     a.map(cm.pattern, cm.mapping);
   };
 
@@ -155,6 +151,8 @@ int main(int argc, char *argv[])
     patterns = Peregrine::PatternGenerator::extend(freq_patterns, extension_strategy, true, freq_edge_patterns);
     auto t10 = utils::get_timestamp();
     std::cout << "pattern extension level " << extend_counter << " time " << (t10-t9)/1e6 << "s" << std::endl;
+
+    printf("patterns num_vertices: %lu\n", patterns[0].num_vertices());
 
     printf("Level %u extended pattern size: %lu\n", step, patterns.size());
 

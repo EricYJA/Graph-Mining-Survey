@@ -130,7 +130,7 @@ struct DiscoveryDomain
     auto &m = p.first;
     sets[0].add(m[0]);
     if constexpr (num_edges == 2) sets[1].add(m[1]);
-    sets[p.second].add(m[num_edges]); // if merge
+    sets[p.second].add(m[num_edges]); // if merge: merge basicaly means the two edges has the same label
 
     return *this;
   }

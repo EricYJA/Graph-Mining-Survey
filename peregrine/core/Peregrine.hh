@@ -91,8 +91,9 @@ namespace Peregrine
   {
     uint32_t vgs_count = dg->get_vgs_count();
     uint32_t num_vertices = dg->get_vertex_count();
-    uint64_t num_tasks = num_vertices * vgs_count;
+    uint64_t num_tasks = num_vertices * vgs_count; // number of tasks is the number of vertices times the number of vgs
 
+    // work are distributed here based on the number of vertices and vgs
     uint64_t task = 0;
     while ((task = Context::task_ctr.fetch_add(1, std::memory_order_relaxed) + 1) <= num_tasks)
     {
