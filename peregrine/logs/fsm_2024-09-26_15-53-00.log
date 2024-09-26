@@ -1,0 +1,30 @@
+Command: bin/fsm data/citeseer 3 300 8
+3-FSM with threshold 300
+Data graph size |V| = 3264 |E| = 4536
+init pattern generation time 8e-06s
+Initial unlabeled pattern size: 1
+match_multi: Matching pattern from patterns
+match_multi: Done matching pattern from patterns
+match_multi finished after 0.000415s
+init pattern matching time 0.000903s
+Initial discovery pattern size: 21
+Initial frequent pattern size: 5
+pattern extension level 0 time 0.000124s
+Initial extended pattern size: 5
+match_single finished after 0.001204s
+pattern matching level 1 time 0.001387s
+Level 1 pattern size: 5
+Level 1 frequent pattern size: 2
+pattern extension level 1 time 0.000102s
+Level 1 extended pattern size: 6
+match_single finished after 0.012485s
+pattern matching level 2 time 0.012748s
+Level 2 pattern size: 6
+Level 2 frequent pattern size: 2
+pattern extension level 2 time 0.000183s
+Level 2 extended pattern size: 8
+2 frequent patterns: 
+[1,1-2,1][1,1-3,1][2,1-4,1]: 335
+[1,0-2,0][1,0-3,0][2,0-4,0]: 303
+finished in 0.015495s
+2024-09-26 15:53:00 Memory Usage:  6704 KB

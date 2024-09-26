@@ -110,8 +110,17 @@ int main(int argc, char *argv[])
   std::vector<Peregrine::SmallGraph> patterns = Peregrine::PatternGenerator::extend(freq_patterns, extension_strategy, true, freq_edge_patterns);
   std::vector<Peregrine::SmallGraph> patterns_unlabeled = Peregrine::PatternGenerator::all(3, extension_strategy, false);
 
+  for(auto &p : patterns_unlabeled) {
+    printf("pattern_unlabeled: %s\n", p.to_string().c_str());
+    p.set_labelling(Peregrine::Graph::DISCOVER_LABELS);
+  }
+
+  patterns = patterns_unlabeled;
+
   printf("patterns num_vertices: %lu\n", patterns[0].num_vertices());
   printf("patterns_unlabeled size: %lu\n", patterns_unlabeled.size());
+
+  
 
   auto t6 = utils::get_timestamp();
   std::cout << "pattern extension level " << extend_counter << " time " << (t6-t5)/1e6 << "s" << std::endl;
@@ -143,6 +152,10 @@ int main(int argc, char *argv[])
         freq_patterns.push_back(p);
         supports.push_back(supp);
       }
+    }
+
+    for(int i = 0; i < freq_patterns.size(); i++) {
+      printf("freq_patterns: %s, support: %lu\n", freq_patterns[i].to_string().c_str(), supports[i]);
     }
 
     printf("Level %u frequent pattern size: %lu\n", step, freq_patterns.size());

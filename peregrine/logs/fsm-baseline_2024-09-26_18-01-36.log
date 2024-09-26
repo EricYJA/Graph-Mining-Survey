@@ -1,0 +1,49 @@
+Command: bin/fsm-baseline data/cite-normalized 3 24000 8
+3-FSM with threshold 24000
+2024-09-26 18:01:36 Memory Usage: 48140 KB
+Data graph size |V| = 3774768 |E| = 16518947
+init pattern generation time 9.8e-05s
+Initial unlabeled pattern size: 1
+match_multi: Matching pattern from patterns
+match_multi: Done matching pattern from patterns
+match_multi finished after 0.960168s
+init pattern matching time 1.00713s
+Initial discovery pattern size: 663
+Initial frequent pattern size: 103
+pattern_unlabeled: [1-2][1-3][2-3]
+pattern_unlabeled: [1-2][1-4][2-3]
+pattern_unlabeled: [1-2][1-3][1-4]
+patterns num_vertices: 3
+patterns_unlabeled size: 3
+pattern extension level 0 time 0.030753s
+2024-09-26 18:01:39 Memory Usage: 592668 KB
+2024-09-26 18:01:42 Memory Usage: 1270004 KB
+2024-09-26 18:01:45 Memory Usage: 2364020 KB
+2024-09-26 18:01:48 Memory Usage: 3223860 KB
+2024-09-26 18:01:51 Memory Usage: 3957160 KB
+2024-09-26 18:01:54 Memory Usage: 4671544 KB
+2024-09-26 18:01:57 Memory Usage: 5341564 KB
+2024-09-26 18:02:00 Memory Usage: 5937140 KB
+2024-09-26 18:02:03 Memory Usage: 6463820 KB
+2024-09-26 18:02:06 Memory Usage: 6937164 KB
+2024-09-26 18:02:09 Memory Usage: 7417908 KB
+2024-09-26 18:02:12 Memory Usage: 7885432 KB
+2024-09-26 18:02:15 Memory Usage: 8274828 KB
+2024-09-26 18:02:18 Memory Usage: 8730304 KB
+2024-09-26 18:02:21 Memory Usage: 9171076 KB
+2024-09-26 18:02:24 Memory Usage: 9564552 KB
+2024-09-26 18:02:27 Memory Usage: 9926396 KB
+2024-09-26 18:02:30 Memory Usage: 10381472 KB
+2024-09-26 18:02:33 Memory Usage: 10769472 KB
+2024-09-26 18:02:36 Memory Usage: 11039944 KB
+2024-09-26 18:02:39 Memory Usage: 11237292 KB
+2024-09-26 18:02:42 Memory Usage: 11602208 KB
+2024-09-26 18:02:45 Memory Usage: 11955564 KB
+2024-09-26 18:02:48 Memory Usage: 12331716 KB
+2024-09-26 18:02:51 Memory Usage: 12670968 KB
+2024-09-26 18:02:54 Memory Usage: 12938556 KB
+2024-09-26 18:02:57 Memory Usage: 13310020 KB
+2024-09-26 18:03:01 Memory Usage: 13708660 KB
+2024-09-26 18:03:04 Memory Usage: 14074948 KB
+2024-09-26 18:03:07 Memory Usage: 14148504 KB
+2024-09-26 18:03:13 Memory Usage:     0 KB
