@@ -1,0 +1,40 @@
+Command: bin/fsm data/citeseer 3 100 8
+3-FSM with threshold 100
+Data graph size |V| = 3264 |E| = 4536
+init pattern generation time 8e-06s
+Initial unlabeled pattern size: 1
+match_multi: Matching pattern from patterns
+match_multi: Done matching pattern from patterns
+match_multi finished after 0.000412s
+init pattern matching time 0.000935s
+Initial discovery pattern size: 21
+Initial frequent pattern size: 7
+pattern extension level 0 time 0.000191s
+Initial extended pattern size: 10
+match_single finished after 0.001882s
+pattern matching level 1 time 0.002072s
+Level 1 pattern size: 10
+Level 1 frequent pattern size: 5
+pattern extension level 1 time 0.000424s
+2024-09-27 13:28:43 Memory Usage:  6572 KB
+Level 1 extended pattern size: 19
+match_single finished after 0.016055s
+pattern matching level 2 time 0.016382s
+Level 2 pattern size: 19
+Level 2 frequent pattern size: 12
+pattern extension level 2 time 0.000904s
+Level 2 extended pattern size: 33
+12 frequent patterns: 
+[1,2-2,2][1,2-3,2][2,2-3,2]: 173
+[1,2-2,2][1,2-3,2][1,2-4,2]: 157
+[1,2-2,2][1,2-3,2][2,2-4,2]: 272
+[1,1-2,1][1,1-3,1][2,1-3,1]: 224
+[1,1-2,1][1,1-3,1][1,1-4,1]: 235
+[1,1-2,1][1,1-3,1][2,1-4,1]: 335
+[1,0-2,0][1,0-3,0][2,0-3,0]: 162
+[1,0-2,0][1,0-3,0][1,0-4,0]: 187
+[1,0-2,0][1,0-3,0][2,0-4,0]: 303
+[1,5-2,5][1,5-3,5][2,5-3,5]: 109
+[1,5-2,5][1,5-3,5][2,5-4,5]: 168
+[1,4-2,4][1,4-3,4][2,4-4,4]: 202
+finished in 0.020974s

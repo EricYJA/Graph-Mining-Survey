@@ -1,0 +1,30 @@
+Command: bin/fsm-baseline data/facebook-0 3 300 8
+3-FSM with threshold 300
+Data graph size |V| = 333 |E| = 2519
+init pattern generation time 5e-06s
+Initial unlabeled pattern size: 1
+match_multi: Matching pattern from patterns
+match_multi: Done matching pattern from patterns
+match_multi finished after 0.000157s
+init pattern matching time 0.000606s
+Initial discovery pattern size: 3
+Initial frequent pattern size: 1
+pattern_unlabeled: [1-2][1-3][2-3]
+pattern_unlabeled: [1-2][1-4][2-3]
+pattern_unlabeled: [1-2][1-3][1-4]
+patterns num_vertices: 3
+patterns_unlabeled size: 3
+pattern extension level 0 time 8.5e-05s
+2024-09-27 13:21:31 Memory Usage:  6100 KB
+Initial extended pattern size: 3
+match_multi: Matching pattern from patterns
+match_multi: Done matching pattern from patterns
+match_multi: Matching pattern from patterns
+match_multi: Done matching pattern from patterns
+match_multi: Matching pattern from patterns
+match_multi: Done matching pattern from patterns
+match_multi finished after 0.034477s
+pattern matching level 1 time 0.03478s
+Level 1 pattern size: 14
+Level 1 frequent pattern size: 0
+pattern extension level 1 time 3e-06s

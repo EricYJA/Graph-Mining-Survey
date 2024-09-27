@@ -1,0 +1,85 @@
+Command: bin/fsm-baseline data/citeseer 3 100 8
+3-FSM with threshold 100
+Data graph size |V| = 3264 |E| = 4536
+init pattern generation time 9e-06s
+Initial unlabeled pattern size: 1
+match_multi: Matching pattern from patterns
+match_multi: Done matching pattern from patterns
+match_multi finished after 0.000422s
+init pattern matching time 0.000921s
+Initial discovery pattern size: 21
+Initial frequent pattern size: 7
+pattern_unlabeled: [1-2][1-3][2-3]
+pattern_unlabeled: [1-2][1-4][2-3]
+pattern_unlabeled: [1-2][1-3][1-4]
+patterns num_vertices: 3
+patterns_unlabeled size: 3
+pattern extension level 0 time 0.000237s
+Initial extended pattern size: 3
+match_multi: Matching pattern from patterns
+match_multi: Done matching pattern from patterns
+match_multi: Matching pattern from patterns
+match_multi: Done matching pattern from patterns
+match_multi: Matching pattern from patterns
+match_multi: Done matching pattern from patterns
+match_multi finished after 0.006654s
+pattern matching level 1 time 0.007404s
+Level 1 pattern size: 626
+freq_patterns: [1,2-2,2][1,2-3,2][2,2-3,2], support: 173
+freq_patterns: [1,5-2,5][1,5-3,5][2,5-3,5], support: 109
+freq_patterns: [1,0-2,0][1,0-3,0][2,0-3,0], support: 162
+freq_patterns: [1,1-2,1][1,1-3,1][2,1-3,1], support: 224
+freq_patterns: [1,1-2,1][1,1-4,2][2,1-3,1], support: 180
+freq_patterns: [1,2-2,2][1,2-4,2][2,2-3,2], support: 272
+freq_patterns: [1,1-2,1][1,1-4,0][2,1-3,1], support: 114
+freq_patterns: [1,1-2,1][1,1-4,1][2,1-3,5], support: 221
+freq_patterns: [1,1-2,5][1,1-4,1][2,5-3,5], support: 108
+freq_patterns: [1,1-2,1][1,1-4,1][2,1-3,2], support: 143
+freq_patterns: [1,1-2,1][1,1-4,5][2,1-3,1], support: 256
+freq_patterns: [1,1-2,1][1,1-4,1][2,1-3,1], support: 335
+freq_patterns: [1,4-2,4][1,4-4,4][2,4-3,4], support: 202
+freq_patterns: [1,2-2,2][1,2-4,1][2,2-3,2], support: 108
+freq_patterns: [1,0-2,0][1,0-4,0][2,0-3,0], support: 303
+freq_patterns: [1,5-2,5][1,5-4,5][2,5-3,5], support: 168
+Level 1 frequent pattern size: 16
+pattern extension level 1 time 0.001176s
+2024-09-27 13:28:26 Memory Usage:  8556 KB
+patterns num_vertices: 4
+Level 1 extended pattern size: 63
+match_single finished after 0.098774s
+pattern matching level 2 time 0.099139s
+Level 2 pattern size: 63
+freq_patterns: [1,2-2,2][1,2-3,2][1,2-4,2][2,2-3,2], support: 118
+freq_patterns: [1,0-2,0][1,0-3,0][1,0-4,0][2,0-3,0], support: 125
+freq_patterns: [1,1-2,1][1,1-3,1][1,1-4,1][2,1-3,1], support: 196
+freq_patterns: [1,2-2,2][1,2-4,2][2,2-3,2][3,2-4,2], support: 161
+freq_patterns: [1,2-2,2][1,2-4,2][1,2-5,2][2,2-3,2], support: 152
+freq_patterns: [1,2-2,2][1,2-4,2][2,2-3,2][3,2-5,2], support: 199
+freq_patterns: [1,1-2,1][1,1-4,1][2,1-3,1][3,1-4,1], support: 248
+freq_patterns: [1,1-2,1][1,1-4,1][1,1-5,1][2,1-3,1], support: 233
+freq_patterns: [1,1-2,1][1,1-4,1][2,1-3,1][3,1-5,1], support: 286
+freq_patterns: [1,4-2,4][1,4-4,4][2,4-3,4][3,4-5,4], support: 136
+freq_patterns: [1,0-2,0][1,0-4,0][2,0-3,0][3,0-4,0], support: 173
+freq_patterns: [1,0-2,0][1,0-4,0][1,0-5,0][2,0-3,0], support: 185
+freq_patterns: [1,0-2,0][1,0-4,0][2,0-3,0][3,0-5,0], support: 253
+freq_patterns: [1,5-2,5][1,5-4,5][2,5-3,5][3,5-5,5], support: 108
+Level 2 frequent pattern size: 14
+pattern extension level 2 time 0.001687s
+patterns num_vertices: 4
+Level 2 extended pattern size: 69
+14 frequent patterns: 
+[1,2-2,2][1,2-3,2][1,2-4,2][2,2-3,2]: 118
+[1,0-2,0][1,0-3,0][1,0-4,0][2,0-3,0]: 125
+[1,1-2,1][1,1-3,1][1,1-4,1][2,1-3,1]: 196
+[1,2-2,2][1,2-4,2][2,2-3,2][3,2-4,2]: 161
+[1,2-2,2][1,2-4,2][1,2-5,2][2,2-3,2]: 152
+[1,2-2,2][1,2-4,2][2,2-3,2][3,2-5,2]: 199
+[1,1-2,1][1,1-4,1][2,1-3,1][3,1-4,1]: 248
+[1,1-2,1][1,1-4,1][1,1-5,1][2,1-3,1]: 233
+[1,1-2,1][1,1-4,1][2,1-3,1][3,1-5,1]: 286
+[1,4-2,4][1,4-4,4][2,4-3,4][3,4-5,4]: 136
+[1,0-2,0][1,0-4,0][2,0-3,0][3,0-4,0]: 173
+[1,0-2,0][1,0-4,0][1,0-5,0][2,0-3,0]: 185
+[1,0-2,0][1,0-4,0][2,0-3,0][3,0-5,0]: 253
+[1,5-2,5][1,5-4,5][2,5-3,5][3,5-5,5]: 108
+finished in 0.110922s
